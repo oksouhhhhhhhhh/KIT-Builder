@@ -1,31 +1,50 @@
 window.addEventListener('DOMContentLoaded', () => {
   const preview = document.getElementById('kit-preview');
   const errorbox = document.getElementById('kit-error-message');
+  const tierSelect = document.getElementById('tier');
 
   function sanitize(input) {
     return input.replace(/<[^>]*>?/gm, '').trim();
   }
 
+  function parseSizes(input, count) {
+    const parts = input.split(',').map(x => x.trim());
+    while (parts.length < count) parts.push('');
+    return parts.slice(0, count);
+  }
+
+  function updateColor() {
+    const selectedOption = tierSelect.options[tierSelect.selectedIndex];
+    const color = selectedOption.getAttribute('data-color') || '#fff';
+    tierSelect.style.backgroundColor = color;
+  }
+
   function updatePreview() {
     const title = sanitize(document.getElementById('kit-title').value);
+    const titleSize = sanitize(document.getElementById('kit-title-size').value);
     const hp = sanitize(document.getElementById('kit-hp').value);
+    const hpSize = sanitize(document.getElementById('kit-hp-size').value);
     const statisticsRaw = sanitize(document.getElementById('kit-statistics').value);
+    const statSizesRaw = sanitize(document.getElementById('kit-statistics-sizes').value);
     const itemsRaw = sanitize(document.getElementById('kit-items').value);
-    const tier = document.getElementById('tier').value;
+    const itemSizesRaw = sanitize(document.getElementById('kit-items-sizes').value);
+    const tier = tierSelect.value;
 
     const stats = statisticsRaw.split(',').map(s => s.trim());
     const items = itemsRaw.split(',').map(i => i.trim()).filter(i => i !== '');
+    const statSizes = parseSizes(statSizesRaw, 4);
+    const itemSizes = parseSizes(itemSizesRaw, 3);
 
     const statsParts = stats.filter(s => s.length > 0);
-    if (statsParts.some(s => !/^\d+(\.\d+)?(x|%)?$/.test(s))) {
+    if (statsParts.some(s => !/^[\d.]+(x|%)?$/.test(s))) {
       errorbox.innerHTML = 'Enter 4 numeric values for statistics: Walkspeed, Attack, Jump power, Defense.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
       return;
     }
-    
+
     const hpParts = hp.split('/').map(s => s.trim());
-    if (hpParts.length !== 2 || !hpParts.every(part => /^\d+(\.\d+)?$/.test(part))) {
+    if (hpParts.length !== 2 || !hpParts.every(part => /^[\d.]+$/.test(part))) {
       errorbox.innerHTML = 'Enter health points in the format "current/max", e.g. 100/100.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
@@ -59,24 +78,24 @@ window.addEventListener('DOMContentLoaded', () => {
     const backgroundKey = tier + countKey;
     preview.style.backgroundImage = backgrounds[backgroundKey] || 'none';
 
-    preview.innerHTML =
-      '<div class="kit-title">' + (title || 'Title') + '</div>' +
-      '<div class="kit-hp">' + (hp || '100/100') + '</div>' +
-      '<div class="kit-middle">' +
-        '<div class="kit-stats">' +
-          '<div class="kit-stats-column-left">' +
-            '<div class="kit-stat-walkspeed">' + (stats[0] || '16') + '</div>' +
-            '<div class="kit-stat-attack">' + (stats[1] || '1x') + '</div>' +
-          '</div>' +
-          '<div class="kit-stats-column-right">' +
-            '<div class="kit-stat-jumppower">' + (stats[2] || '50') + '</div>' +
-            '<div class="kit-stat-defense">' + (stats[3] || '0%') + '</div>' +
-          '</div>' +
-        '</div>' +
-        '<div class="kit-item1-name">' + (items[0] || '') + '</div>' +
-        '<div class="kit-item2-name">' + (items[1] || '') + '</div>' +
-        '<div class="kit-item3-name">' + (items[2] || '') + '</div>' +
-      '</div>';
+    preview.innerHTML = `
+<div class="kit-title" style="${titleSize ? `font-size:${titleSize}` : ''}">${title || 'Title'}</div>
+<div class="kit-hp" style="${hpSize ? `font-size:${hpSize}` : ''}">${hp || '100/100'}</div>
+<div class="kit-middle">
+  <div class="kit-stats">
+    <div class="kit-stats-column-left">
+      <div class="kit-stat-walkspeed" style="${statSizes[0] ? `font-size:${statSizes[0]}` : ''}">${stats[0] || '16'}</div>
+      <div class="kit-stat-attack" style="${statSizes[1] ? `font-size:${statSizes[1]}` : ''}">${stats[1] || '1x'}</div>
+    </div>
+    <div class="kit-stats-column-right">
+      <div class="kit-stat-jumppower" style="${statSizes[2] ? `font-size:${statSizes[2]}` : ''}">${stats[2] || '50'}</div>
+      <div class="kit-stat-defense" style="${statSizes[3] ? `font-size:${statSizes[3]}` : ''}">${stats[3] || '0%'}</div>
+    </div>
+  </div>
+  <div class="kit-item1-name" style="${itemSizes[0] ? `font-size:${itemSizes[0]}` : ''}">${items[0] || ''}</div>
+  <div class="kit-item2-name" style="${itemSizes[1] ? `font-size:${itemSizes[1]}` : ''}">${items[1] || ''}</div>
+  <div class="kit-item3-name" style="${itemSizes[2] ? `font-size:${itemSizes[2]}` : ''}">${items[2] || ''}</div>
+</div>`;
   }
 
   document.querySelectorAll('input, select').forEach(el => {
@@ -94,16 +113,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  updateColor();
   updatePreview();
+  tierSelect.addEventListener('change', updateColor);
 });
-
-const tierSelect = document.getElementById('tier');
-
-function updateColor() {
-  const selectedOption = tierSelect.options[tierSelect.selectedIndex];
-  const color = selectedOption.getAttribute('data-color') || '#fff';
-  tierSelect.style.backgroundColor = color;
-}
-
-tierSelect.addEventListener('change', updateColor);
-updateColor();
