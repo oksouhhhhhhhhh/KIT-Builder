@@ -129,6 +129,20 @@ body {
 
 }
 
+input {
+  border-radius: 5px !important;;
+  border: 2px solid #000 !important;;
+  background:#0e2435;
+  color: #fff !important;
+  text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black, 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
+  font-family:"Roboto Mono", sans-serif
+}
+
+select {
+  border-radius: 5px !important;
+  border: 2px solid #000 !important;
+}
+
 @keyframes ia-menu-background {
     from {
         background-position-x: 0;
@@ -137,12 +151,6 @@ body {
     to {
         background-position-x: calc(-100% / 3);
     }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .footer {
