@@ -1,3 +1,144 @@
 body {
-  background: #242424
+    background:#173f5f url(./images/background.png);
+    background-size:12.2%;
+    animation:20s infinite linear ia-menu-background;
+    font-family:'Roboto Mono',sans-serif;
+    font-size:20px;
+    font-weight:400;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+
+}
+
+@keyframes ia-menu-background {
+    from {
+        background-position-x: 0;
+    }
+
+    to {
+        background-position-x: calc(-100% / 3);
+    }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.kit-preview {
+  width: 371px;
+  height: 536px;
+  background-size: cover;
+  position: relative;
+}
+.kit-container {
+  position:relative;
+  width:371px;
+  height:536px
+}
+
+.kit-container a {
+  color: #fff !important;
+}
+
+.kit-title {
+  position:absolute;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:341px;
+  height:96px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+  font-family:"Press Start 2P",sans-serif;
+  font-size:30px
+}
+.kit-hp {
+  position:absolute;
+  top:120px;
+  left:17px;
+  font-size:42px;
+  width:176px;
+  height:40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-weight:400;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+  font-family:"Roboto Mono",sans-serif
+}
+.kit-stat-attack,
+.kit-stat-defense {
+  position:absolute;
+  top:30px
+}
+.kit-stats-column-left,
+.kit-stats-column-right {
+  position:absolute;
+  top:107px;
+  font-size:23px;
+  font-weight:bold;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+  font-family:"Roboto Mono",sans-serif;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center
+}
+.kit-stats-column-left {
+  left:235px
+}
+.kit-stats-column-right {
+  right:21px
+}
+.kit-stat-walkspeed,
+.kit-stat-attack,
+.kit-stat-jumppower,
+.kit-stat-defense {
+  width:42px;
+  height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:bold;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+  font-family:"Roboto Mono",sans-serif
+}
+
+.kit-item1-name,
+.kit-item2-name,
+.kit-item3-name {
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  font-weight:400;
+  color:white;
+  text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;
+  font-family:"Roboto Mono",sans-serif;
+  width:316px;
+  height:83px;
+  line-height:1.3
+}
+.kit-item1-name {
+  top:234px
+}
+.kit-item2-name {
+  top:341px
+}
+.kit-item3-name {
+  top:450px
 }
