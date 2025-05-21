@@ -144,6 +144,15 @@ input {
   font-family:"Roboto Mono", sans-serif
 }
 
+button {
+  border-radius: 5px !important;;
+  border: 2px solid #000 !important;;
+  background:#0e2435;
+  color: #fff !important;
+  text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black, 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
+  font-family:"Roboto Mono", sans-serif
+}
+
 select {
   border-radius: 5px !important;
   border: 2px solid #000 !important;
