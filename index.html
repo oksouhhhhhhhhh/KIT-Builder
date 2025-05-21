@@ -1,11 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>KIT Builder</title>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8" />
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<title>KIT Builder</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<p>hi im real</p>
+
+<div style="font-size:3em;text-align:center;margin-top:0.8em">KIT Builder</div>
+  <div style="display:flex;justify-content:center;gap:40px;align-items:flex-start;margin-top:3em">
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; max-width: 400px;">
+      <label style="flex: 0 0 48%;">Title: <input type="text" id="kit-title" /></label>
+      <label style="flex: 0 0 48%;">HP: <input type="text" id="kit-hp" /></label>
+      <label style="flex: 0 0 48%;">Walkspeed: <input type="text" id="kit-walkspeed" /></label>
+      <label style="flex: 0 0 48%;">Attack: <input type="text" id="kit-attack" /></label>
+      <label style="flex: 0 0 48%;">Jump Power: <input type="text" id="kit-jumppower" /></label>
+      <label style="flex: 0 0 48%;">Defense: <input type="text" id="kit-defense" /></label>
+      <label style="flex: 0 0 48%;">Item 1: <input type="text" class="kit-items" id="item1" /></label>
+      <label style="flex: 0 0 48%;">Item 2: <input type="text" class="kit-items" id="item2" /></label>
+      <label style="flex: 0 0 48%;">Item 3: <input type="text" class="kit-items" id="item3" /></label>
+      <label>Tier:
+        <select id="tier">
+          <option value="common">Common</option>
+          <option value="rare">Rare</option>
+          <option value="epic">Epic</option>
+          <option value="legendary">Legendary</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <div class="kit-preview" id="kit-preview"></div>
+      <div id="kit-error-message" style="color:red;position:absolute;top:50%;width:30%;text-align:center;"></div>
+      <button id="funnydownloadbuttonlolol" style="margin-top:10px;transform:translate(100%)">Download as a .png</button>
+    </div>
+  </div>
+
+
+<script src="index.js"></script>
 </body>
 </html>
