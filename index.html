@@ -25,10 +25,10 @@
     <label style="flex: 0 0 48%;">HP font size: <input type="text" id="kit-hp-size" placeholder="e.g. 23px" /></label>
 
     <label style="flex: 0 0 48%;">Statistics: <input type="text" id="kit-statistics" placeholder="Walkspeed, Attack, Jump power, Defense" /></label>
-    <label style="flex: 0 0 48%;">Stat sizes: <input type="text" id="kit-statistics-sizes" placeholder="e.g. 23px, 23px, 23px, 23px" /></label>
+    <label style="flex: 0 0 48%;">Stat sizes: <input type="text" id="kit-statistics-sizes" placeholder="e.g. 23px,23px,23px,23px" /></label>
 
     <label style="flex: 0 0 48%;">Items: <input type="text" id="kit-items" placeholder="Item 1, Item 2, Item 3" /></label>
-    <label style="flex: 0 0 48%;">Item sizes: <input type="text" id="kit-items-sizes" placeholder="e.g. 23px, 23px, 23px" /></label>
+    <label style="flex: 0 0 48%;">Item sizes: <input type="text" id="kit-items-sizes" placeholder="e.g. 23px,23px,23px" /></label>
 
     <div style="flex: 0 0 100%; text-align: center;">
       <label>Tier:
@@ -42,12 +42,11 @@
     </div>
   </div>
 
-  <div>
+  <div style="display: flex; flex-direction: column; align-items: center;">
     <div class="kit-preview" id="kit-preview"></div>
     <div id="kit-error-message" style="color:red;position:absolute;top:50%;width:40%;text-align:center;"></div>
-    <button id="funnydownloadbuttonlolol" style="margin-top:10px;transform:translate(100%)">Download as a .png</button>
+    <button id="funnydownloadbuttonlolol" style="margin-top:10px">Download as a .png</button>
   </div>
-</div>
 
 <div class="footer" style="font-size:15px"><a href="https://github.com/oksouhhhhhhhhh/KIT-Builder">GitHub Repository</a> • Made by PrabhasXD, with awesomeness and epicness • <a href="https://jbcstudios.miraheze.org">JBC Studios Wiki</a></div>
 <script src="index.js"></script>
