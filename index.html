@@ -19,23 +19,24 @@
   
   <div style="display:flex;justify-content:center;gap:40px;align-items:flex-start;margin-top:3em">
     <div style="display: flex; flex-wrap: wrap; gap: 15px; max-width: 400px;">
-      <label style="flex: 0 0 48%;">Title: <input type="text" id="kit-title" /></label>
-      <label style="flex: 0 0 48%;">HP: <input type="text" id="kit-hp" /></label>
-      <label style="flex: 0 0 48%;">Walkspeed: <input type="text" id="kit-walkspeed" /></label>
-      <label style="flex: 0 0 48%;">Attack: <input type="text" id="kit-attack" /></label>
-      <label style="flex: 0 0 48%;">Jump Power: <input type="text" id="kit-jumppower" /></label>
-      <label style="flex: 0 0 48%;">Defense: <input type="text" id="kit-defense" /></label>
-      <label style="flex: 0 0 48%;">Item 1: <input type="text" class="kit-items" id="item1" /></label>
-      <label style="flex: 0 0 48%;">Item 2: <input type="text" class="kit-items" id="item2" /></label>
-      <label style="flex: 0 0 48%;">Item 3: <input type="text" class="kit-items" id="item3" /></label>
-      <label>Tier:
-        <select id="tier">
-          <option value="common">Common</option>
-          <option value="rare">Rare</option>
-          <option value="epic">Epic</option>
-          <option value="legendary">Legendary</option>
-        </select>
+      <label style="flex: 0 0 48%;">Title: <input type="text" id="kit-title" />
       </label>
+      <label style="flex: 0 0 48%;">Health points: <input type="text" id="kit-hp" />
+      </label>
+      <label style="flex: 0 0 48%;">Statistics: <input type="text" id="kit-statistics" placeholder="Walkspeed, Attack, Jump power, Defense" />
+      </label>
+      <label style="flex: 0 0 48%;">Items: <input type="text" id="kit-items" placeholder="Item 1, Item 2, Item 3" />
+      </label>
+      <div style="flex: 0 0 100%; text-align: center;">
+        <label>Tier:
+          <select id="tier" style="color:white;color:white;text-shadow:1px 0 black,0 1px black,-1px 0 black,0 -1px black,1px 1px black,-1px 1px black,1px -1px black,-1px -1px black;font-family:'Roboto Mono',sans-serif">
+            <option value="common" data-color="#b0f4b5">Common</option>
+            <option value="rare" data-color="#6bddf4">Rare</option>
+            <option value="epic" data-color="#c18df4">Epic</option>
+            <option value="legendary" data-color="#f4df78">Legendary</option>
+          </select>
+        </label>
+      </div>
     </div>
     <div>
       <div class="kit-preview" id="kit-preview"></div>
@@ -43,7 +44,7 @@
       <button id="funnydownloadbuttonlolol" style="margin-top:10px;transform:translate(100%)">Download as a .png</button>
     </div>
   </div>
-
+  
 <div class="footer" style="font-size:15px"><a href="https://github.com/oksouhhhhhhhhh/KIT-Builder">GitHub Repository</a> • Made by PrabhasXD, with awesomeness and epicness • <a href="https://jbcstudios.miraheze.org">JBC Studios Wiki</a></div>
 <script src="index.js"></script>
 </body>
