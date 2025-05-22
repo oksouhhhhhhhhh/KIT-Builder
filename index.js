@@ -169,12 +169,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const tier = tierSelect.value;
 
-    // Process stats: split and sanitize but DO NOT filter empty strings
     let stats = statisticsRaw.split(',').map(s => sanitize(s));
     while (stats.length < 4) stats.push(''); // ensure length 4
     stats = stats.slice(0, 4);
 
-    // Validate stats format: allow empty or valid number
     if (stats.some(s => s && !/^\d*\.?\d+(x|%)?$/.test(s))) {
       errorbox.textContent = 'Enter 4 numeric values for statistics: Walkspeed, Attack, Jump power, Defense.';
       preview.innerHTML = '';
@@ -182,22 +180,18 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Process items: split and sanitize, slice to 3, DO NOT filter empties
     let items = itemsRaw.split(',').map(i => sanitize(i));
     while (items.length < 3) items.push('');
     items = items.slice(0, 3);
 
-    // Process cooldown parts similarly
     let cooldownParts = cooldownRaw.split(',').map(s => sanitize(s));
     while (cooldownParts.length < 1) cooldownParts.push('');
     cooldownParts = cooldownParts.filter(s => s !== ''); // cooldown can be empty, so filter here to skip empty cooldowns
 
-    // Parse sizes
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
     const cooldownSizes = parseSizes(cooldownSizesRaw, cooldownParts.length);
 
-    // Validate HP format "current/max"
     const hpParts = hp.split('/').map(s => s.trim());
     if (hpParts.length !== 2 || !hpParts.every(part => /^\d*\.?\d+$/.test(part))) {
       errorbox.textContent = 'Enter health points in the format "current/max", e.g. 100/100.';
@@ -206,14 +200,11 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    // Clear error
     errorbox.textContent = '';
 
-    // Clear preview and set background
     preview.innerHTML = '';
     preview.style.backgroundImage = backgrounds[tier] || '';
 
-    // Build container
     const container = document.createElement('div');
     container.className = `ar-kit-container ar-kit-${tier}`;
     container.innerHTML = `
@@ -263,12 +254,12 @@ window.addEventListener('DOMContentLoaded', () => {
 
   tierSelect.addEventListener('change', updateColor);
 
-  // Initialize color & preview on load
   updateColor();
   updatePreview();
 
 });
 
+// switching between ia and ar
 
 document.getElementById("right-arrow").addEventListener("click", function () {
   document.getElementById("ia-kit-view").style.display = "none";
@@ -285,3 +276,54 @@ document.getElementById("left-arrow").addEventListener("click", function () {
   document.getElementById("right-arrow").style.display = "inline-block";
   document.body.classList.remove("ar-mode");
 });
+
+// last updated
+
+async function showLastUpdated() {
+  const repoOwner = 'oksouhhhhhhhhh';
+  const repoName = 'KIT-Builder';
+  
+  function formatFullDate(date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function timeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+
+    if (seconds < 60) return `${seconds} seconds ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minutes ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    return `${days} days ago`;
+  }
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits?per_page=1`);
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const commits = await response.json();
+    if (commits.length === 0) {
+      document.getElementById('last-updated').textContent = 'No commits found.';
+      return;
+    }
+
+    const lastCommitDate = new Date(commits[0].commit.committer.date);
+    const fullDate = formatFullDate(lastCommitDate);
+
+    function updateText() {
+      const ago = timeAgo(lastCommitDate);
+      document.getElementById('last-updated').textContent = `Last deployment: ${ago} (${fullDate})`;
+    }
+    updateText();
+    setInterval(updateText, 10000);
+
+  } catch (error) {
+    console.error('Error fetching last commit:', error);
+    document.getElementById('last-updated').textContent = 'Could not load last updated date.';
+  }
+}
+
+showLastUpdated();
