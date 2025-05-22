@@ -283,7 +283,7 @@
 }
 
 body {
-    background:#173f5f url(./images/background.png);
+    background:#173f5f url(./images/ia-background.png);
     background-size:12.2%;
     animation:20s infinite linear ia-menu-background;
     font-family:'Roboto Mono',sans-serif;
