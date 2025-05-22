@@ -152,34 +152,11 @@ window.addEventListener('DOMContentLoaded', () => {
     tierSelect.style.backgroundColor = color || '#fff';
   }
 
-  function adjustButtonPosition() {
-    const cooldown = document.querySelector('.ar-kit-cooldown');
-    const button = document.getElementById('ar-funnydownloadbuttonlolol');
-    const preview = document.getElementById('ar-kit-preview');
-
-    if (cooldown && button && preview) {
-      const previewRect = preview.getBoundingClientRect();
-      const cooldownRect = cooldown.getBoundingClientRect();
-
-      // Calculate cooldown bottom relative to preview top
-      const cooldownBottomRelative = cooldownRect.bottom - previewRect.top;
-
-      // Add some margin (e.g., 10px) below cooldown
-      const newButtonTop = cooldownBottomRelative + 10;
-
-      // Set button style to position absolute relative to preview
-      button.style.position = 'absolute';
-      button.style.left = '50%'; // center horizontally
-      button.style.transform = 'translateX(-50%)';
-      button.style.top = `${newButtonTop}px`;
-    }
-  }
-
   function updatePreview() {
     const title = sanitize(document.getElementById('ar-kit-title').value);
     const titleSize = sanitize(document.getElementById('ar-kit-title-size').value);
-    const desc = sanitize(document.getElementById('ar-kit-desc').value);
-    const descSize = sanitize(document.getElementById('ar-kit-desc-size').value);
+    const caption = sanitize(document.getElementById('ar-kit-caption').value);
+    const captionSize = sanitize(document.getElementById('ar-kit-caption-size').value);
     const hp = sanitize(document.getElementById('ar-kit-hp').value);
     const hpSize = sanitize(document.getElementById('ar-kit-hp-size').value);
 
@@ -241,7 +218,7 @@ window.addEventListener('DOMContentLoaded', () => {
     container.className = `ar-kit-container ar-kit-${tier}`;
     container.innerHTML = `
       <div class="ar-kit-title" style="${titleSize ? `font-size:${titleSize}` : ''}">${title || 'Title'}</div>
-      <div class="ar-kit-desc" style="${descSize ? `font-size:${descSize}` : ''}">${desc || ''}</div>
+      <div class="ar-kit-caption" style="${captionSize ? `font-size:${captionSize}` : ''}">${caption || ''}</div>
       <div class="ar-kit-middle">
         <div class="ar-kit-hp" style="${hpSize ? `font-size:${hpSize}` : ''}">HP: ${hp || '100/100'}</div>
         <div class="ar-kit-stats">
@@ -277,7 +254,8 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('ar-funnydownloadbuttonlolol').addEventListener('click', () => {
     html2canvas(preview, { backgroundColor: null }).then(canvas => {
       const link = document.createElement('a');
-      link.download = `kit-preview-${Date.now()}.png`;
+      const title = sanitize(document.getElementById('ia-kit-title').value.trim() || 'ia-kit-preview');
+      link.download = `${title.replace(/[\\/:*?"<>|]/g, '_')}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     });
