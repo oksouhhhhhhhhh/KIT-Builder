@@ -63,17 +63,17 @@ window.addEventListener('DOMContentLoaded', () => {
     errorbox.innerHTML = '';
 
     const backgrounds = {
-      common2: 'url(images/common3.png)',
-      common3: 'url(images/common2.png)',
-      rare1: 'url(images/rare1.png)',
-      rare2: 'url(images/rare2.png)',
-      rare3: 'url(images/rare3.png)',
-      epic1: 'url(images/epic1.png)',
-      epic2: 'url(images/epic2.png)',
-      epic3: 'url(images/epic3.png)',
-      legendary1: 'url(images/legendary1.png)',
-      legendary2: 'url(images/legendary2.png)',
-      legendary3: 'url(images/legendary3.png)'
+      common2: 'url(images/ia-kit-common3.png)',
+      common3: 'url(images/ia-kit-common2.png)',
+      rare1: 'url(images/ia-kit-rare1.png)',
+      rare2: 'url(images/ia-kit-rare2.png)',
+      rare3: 'url(images/ia-kit-rare3.png)',
+      epic1: 'url(images/ia-kit-epic1.png)',
+      epic2: 'url(images/ia-kit-epic2.png)',
+      epic3: 'url(images/ia-kit-epic3.png)',
+      legendary1: 'url(images/ia-kit-legendary1.png)',
+      legendary2: 'url(images/ia-kit-legendary2.png)',
+      legendary3: 'url(images/ia-kit-legendary3.png)'
     };
 
     const countKey = Math.min(Math.max(items.length, 1), 3);
