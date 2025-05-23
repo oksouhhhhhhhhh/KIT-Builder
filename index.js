@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
     rare: 'url(images/ar-kit-rare.png)',
     epic: 'url(images/ar-kit-epic.png)',
     legendary: 'url(images/ar-kit-legendary.png)',
-    mythical: 'url(images/ar-kit-mythical.png)'
+    mythical: 'url(images/ar-kit-common.png)'
   };
 
   function sanitize(input) {
@@ -164,8 +164,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const statSizesRaw = document.getElementById('ar-kit-statistics-sizes').value;
     const itemsRaw = document.getElementById('ar-kit-items').value;
     const itemSizesRaw = document.getElementById('ar-kit-items-sizes').value;
-    const additionalstatsRaw = document.getElementById('ar-kit-additional-stats-input').value;
-    const additionalstatsSizesRaw = document.getElementById('ar-kit-additional-stats-sizes').value;
+    const additonalstatsRaw = document.getElementById('ar-kit-additional-stats-input').value;
+    const additonalstatsSizesRaw = document.getElementById('ar-kit-additional-stats-sizes').value;
 
     const tier = tierSelect.value;
 
@@ -184,13 +184,13 @@ window.addEventListener('DOMContentLoaded', () => {
     while (items.length < 3) items.push('');
     items = items.slice(0, 3);
 
-    let additionalstatsParts = additionalstatsRaw.split(',').map(s => sanitize(s));
+    let additionalstatsParts = additonalstatsRaw.split(',').map(s => sanitize(s));
     while (additionalstatsParts.length < 1) additionalstatsParts.push('');
-    additionalstatsParts = additionalstatsParts.filter(s => s !== ''); 
+      additionalstatsParts = additionalstatsParts.filter(s => s !== '');
 
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
-    const additionalstatsSizes = parseSizes(additionalstatsSizesRaw, additionalstatsParts.length);
+    const cooldownSizes = parseSizes(additonalstatsSizesRaw, additionalstatsParts.length);
 
     const hpParts = hp.split('/').map(s => s.trim());
     if (hpParts.length !== 2 || !hpParts.every(part => /^\d*\.?\d+$/.test(part))) {
@@ -227,8 +227,8 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="ar-kit-item2-name" style="${itemSizes[1] ? `font-size:${itemSizes[1]}` : ''}">${items[1]}</div>
       <div class="ar-kit-item3-name" style="${itemSizes[2] ? `font-size:${itemSizes[2]}` : ''}">${items[2]}</div>
      ${additionalstatsParts.length > 0 ? `<div class="ar-kit-additional-stats" style="display:flex; flex-direction: column; gap: 4px;">${
-  additionalstatsParts.map((part, idx) => 
-    `<div style="font-size:${additionalstatsSizes[idx] || '20px'}; white-space: normal;">${part}</div>`
+       additionalstatsParts.map((part, idx) => 
+    `<div style="font-size:${cooldownSizes[idx] || '20px'}; white-space: normal;">${part}</div>`
   ).join('')
 }</div>` : ''}
 
