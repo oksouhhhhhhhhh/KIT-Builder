@@ -164,8 +164,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const statSizesRaw = document.getElementById('ar-kit-statistics-sizes').value;
     const itemsRaw = document.getElementById('ar-kit-items').value;
     const itemSizesRaw = document.getElementById('ar-kit-items-sizes').value;
-    const cooldownRaw = document.getElementById('ar-kit-cooldown-input').value;
-    const cooldownSizesRaw = document.getElementById('ar-kit-cooldown-sizes').value;
+    const additionalstatsRaw = document.getElementById('ar-kit-additional-stats-input').value;
+    const additionalstatsSizesRaw = document.getElementById('ar-kit-additional-stats-sizes').value;
 
     const tier = tierSelect.value;
 
@@ -184,13 +184,13 @@ window.addEventListener('DOMContentLoaded', () => {
     while (items.length < 3) items.push('');
     items = items.slice(0, 3);
 
-    let cooldownParts = cooldownRaw.split(',').map(s => sanitize(s));
-    while (cooldownParts.length < 1) cooldownParts.push('');
-    cooldownParts = cooldownParts.filter(s => s !== ''); // cooldown can be empty, so filter here to skip empty cooldowns
+    let additionalstatsParts = additionalstatsRaw.split(',').map(s => sanitize(s));
+    while (additionalstatsParts.length < 1) additionalstatsParts.push('');
+    additionalstatsParts = additionalstatsParts.filter(s => s !== ''); 
 
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
-    const cooldownSizes = parseSizes(cooldownSizesRaw, cooldownParts.length);
+    const additionalstatsSizes = parseSizes(additionalstatsSizesRaw, cooldownParts.length);
 
     const hpParts = hp.split('/').map(s => s.trim());
     if (hpParts.length !== 2 || !hpParts.every(part => /^\d*\.?\d+$/.test(part))) {
@@ -226,9 +226,9 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="ar-kit-item1-name" style="${itemSizes[0] ? `font-size:${itemSizes[0]}` : ''}">${items[0]}</div>
       <div class="ar-kit-item2-name" style="${itemSizes[1] ? `font-size:${itemSizes[1]}` : ''}">${items[1]}</div>
       <div class="ar-kit-item3-name" style="${itemSizes[2] ? `font-size:${itemSizes[2]}` : ''}">${items[2]}</div>
-     ${cooldownParts.length > 0 ? `<div class="ar-kit-cooldown" style="display:flex; flex-direction: column; gap: 4px;">${
-  cooldownParts.map((part, idx) => 
-    `<div style="font-size:${cooldownSizes[idx] || '20px'}; white-space: normal;">${part}</div>`
+     ${additionalstatsParts.length > 0 ? `<div class="ar-kit-additional-stats" style="display:flex; flex-direction: column; gap: 4px;">${
+  additionalstatsParts.map((part, idx) => 
+    `<div style="font-size:${additionalstatsSizes[idx] || '20px'}; white-space: normal;">${part}</div>`
   ).join('')
 }</div>` : ''}
 
