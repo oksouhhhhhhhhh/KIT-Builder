@@ -190,7 +190,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
-    const additionalstatsSizes = parseSizes(additionalstatsSizesRaw, cooldownParts.length);
+    const additionalstatsSizes = parseSizes(additionalstatsSizesRaw, additionalstatsParts.length);
 
     const hpParts = hp.split('/').map(s => s.trim());
     if (hpParts.length !== 2 || !hpParts.every(part => /^\d*\.?\d+$/.test(part))) {
