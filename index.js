@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', () => {
     rare: 'url(images/ar-kit-rare.png)',
     epic: 'url(images/ar-kit-epic.png)',
     legendary: 'url(images/ar-kit-legendary.png)',
-    mythical: 'url(images/ar-kit-common.png)'
+    mythical: 'url(images/ar-kit-mythical.png)'
   };
 
   function sanitize(input) {
