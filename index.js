@@ -277,9 +277,9 @@ document.getElementById("left-arrow").addEventListener("click", function () {
   document.body.classList.remove("ar-mode");
 });
 
-// last updated
+// last updated (duplicated to literally make it work in ar-mode amazing.)
 
-async function showLastUpdated() {
+async function iaShowLastUpdated() {
   const repoOwner = 'oksouhhhhhhhhh';
   const repoName = 'KIT-Builder';
   
@@ -306,7 +306,7 @@ async function showLastUpdated() {
 
     const commits = await response.json();
     if (commits.length === 0) {
-      document.getElementById('last-updated').textContent = 'No commits found.';
+      document.getElementById('ia-last-updated').textContent = 'No commits found.';
       return;
     }
 
@@ -315,15 +315,64 @@ async function showLastUpdated() {
 
     function updateText() {
       const ago = timeAgo(lastCommitDate);
-      document.getElementById('last-updated').textContent = `Last deployment: ${ago} (${fullDate})`;
+      document.getElementById('ia-last-updated').textContent = `Last deployment: ${ago} (${fullDate})`;
     }
     updateText();
     setInterval(updateText, 10000);
 
   } catch (error) {
     console.error('Error fetching last commit:', error);
-    document.getElementById('last-updated').textContent = 'Could not load last updated date.';
+    document.getElementById('ia-last-updated').textContent = 'Could not load last updated date.';
   }
 }
 
-showLastUpdated();
+iaShowLastUpdated();
+
+async function arShowLastUpdated() {
+  const repoOwner = 'oksouhhhhhhhhh';
+  const repoName = 'KIT-Builder';
+
+  function formatFullDate(date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+
+  function timeAgo(date) {
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+
+    if (seconds < 60) return `${seconds} seconds ago`;
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes} minutes ago`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours} hours ago`;
+    const days = Math.floor(hours / 24);
+    return `${days} days ago`;
+  }
+
+  try {
+    const response = await fetch(`https://api.github.com/repos/${repoOwner}/${repoName}/commits?per_page=1`);
+    if (!response.ok) throw new Error('Network response was not ok');
+
+    const commits = await response.json();
+    if (commits.length === 0) {
+      document.getElementById('ar-last-updated').textContent = 'No commits found.';
+      return;
+    }
+
+    const lastCommitDate = new Date(commits[0].commit.committer.date);
+    const fullDate = formatFullDate(lastCommitDate);
+
+    function updateText() {
+      const ago = timeAgo(lastCommitDate);
+      document.getElementById('ar-last-updated').textContent = `Last deployment: ${ago} (${fullDate})`;
+    }
+    updateText();
+    setInterval(updateText, 10000);
+
+  } catch (error) {
+    console.error('Error fetching last commit:', error);
+    document.getElementById('ar-last-updated').textContent = 'Could not load last updated date.';
+  }
+}
+
+arShowLastUpdated();
