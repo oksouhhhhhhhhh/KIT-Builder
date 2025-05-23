@@ -264,10 +264,10 @@
 .ar-kit-additional-stats {
   width: 379px;
   min-height: 33px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.25);
   position: absolute;
   left: 49.8%;
-  top: 102%;
+  top: 100.5%;
   transform: translate(-50%, 0); 
   display: flex;
   flex-direction: column;
