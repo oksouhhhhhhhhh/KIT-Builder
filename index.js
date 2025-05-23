@@ -245,7 +245,7 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('ar-funnydownloadbuttonlolol').addEventListener('click', () => {
     html2canvas(preview, { backgroundColor: null }).then(canvas => {
       const link = document.createElement('a');
-      const title = sanitize(document.getElementById('ia-kit-title').value.trim() || 'ia-kit-preview');
+      const title = sanitize(document.getElementById('ar-kit-title').value.trim() || 'ar-kit-preview');
       link.download = `${title.replace(/[\\/:*?"<>|]/g, '_')}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
