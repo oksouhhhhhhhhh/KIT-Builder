@@ -261,7 +261,7 @@
   top:510px;
 }
 
-.ar-kit-cooldown {
+.ar-kit-additional-stats {
   width: 379px;
   min-height: 33px;
   background: rgba(255, 255, 255, 0.6);
@@ -338,8 +338,8 @@ input {
 #ar-kit-statistics-sizes,
 #ar-kit-items,
 #ar-kit-items-sizes,
-#ar-kit-cooldown-input,
-#ar-kit-cooldown-sizes {
+#ar-kit-additional-stats-input,
+#ar-kit-additional-stats-sizes {
   border-radius: 5px !important;
   border: 2px solid #000 !important;
   background:#33003e;
