@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const itemSizes = parseSizes(itemSizesRaw, 3);
 
     const statsParts = stats.filter(s => s.length > 0);
-    if (statsParts.some(s => !/^[\d.]+(x|%)?$/.test(s))) {
+    if (statsParts.some(s => !/^-?\d+(\.\d+)?(x|%)?$/.test(s))) {
       errorbox.innerHTML = 'Enter 4 numeric values for statistics: Walkspeed, Attack, Jump power, Defense.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
@@ -173,7 +173,7 @@ window.addEventListener('DOMContentLoaded', () => {
     while (stats.length < 4) stats.push(''); // ensure length 4
     stats = stats.slice(0, 4);
 
-    if (stats.some(s => s && !/^\d*\.?\d+(x|%)?$/.test(s))) {
+   if (stats.some(s => s && !/^-?\d+(\.\d+)?(x|%)?$/.test(s))) {
       errorbox.textContent = 'Enter 4 numeric values for statistics: Walkspeed, Attack, Jump power, Defense.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
