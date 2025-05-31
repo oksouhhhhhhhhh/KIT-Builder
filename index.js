@@ -53,16 +53,17 @@ window.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    if (tier === 'common' && items.length === 1) {
+    /*if (tier === 'common' && items.length === 1) {
       errorbox.innerHTML = 'Common KITs cannot have only one item, either add more items or change the tier.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
       return;
     }
-
+*/
     errorbox.innerHTML = '';
 
     const backgrounds = {
+      common1: 'url(images/ia-kit-common1.png)',
       common2: 'url(images/ia-kit-common3.png)',
       common3: 'url(images/ia-kit-common2.png)',
       rare1: 'url(images/ia-kit-rare1.png)',
