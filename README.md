@@ -3,5 +3,7 @@ A GitHub page to create custom KITs for the Roblox randomizer experience "item a
 
 You can find the link to the GitHub page here: https://oksouhhhhhhhhh.github.io/KIT-Builder/
 
+(60% of this is vibe coded because javascript stinksssssssssssss sooooooooooooooooooo enjoy if weird things happen (I will fully learn js I swear))
+
 # License
 The code is licensed under the [AGPL-3.0 license](https://www.gnu.org/licenses/agpl-3.0.en.html)
