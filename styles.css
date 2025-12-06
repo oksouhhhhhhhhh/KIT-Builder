@@ -149,9 +149,9 @@ input {
   color: #fff !important;
   text-shadow: 1px 0 black, 0 1px black, -1px 0 black, 0 -1px black, 1px 1px black, -1px 1px black, 1px -1px black, -1px -1px black;
   font-family:"Roboto Mono", sans-serif;
-  position: absolute;
-  left: 35%;
-  top: 50%;
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
 }
 
 select {
