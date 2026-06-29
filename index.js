@@ -36,17 +36,14 @@ window.addEventListener('DOMContentLoaded', () => {
     const items = itemsRaw.split(',').map(i => i.trim()).filter(i => i !== '');
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
-
-    document.getElementById('ia-kit-items').addEventListener('input', e => {
-      e.target.value = e.target.value.toLowerCase();
-    });
-
-   const itemSizes = parseSizes(itemSizesRaw, 3);
-    if (itemSizes.some(size => !size)) {
-      errorbox.innerHTML = 'Please enter all 3 item font sizes.';
-      preview.innerHTML = '';
-      preview.style.backgroundImage = 'none';
-      return;
+    
+    for (let i = 0; i < items.length; i++) {
+      if (!itemSizes[i]) {
+        errorbox.innerHTML = `Please enter a font size for Item ${i + 1}.`;
+        preview.innerHTML = '';
+        preview.style.backgroundImage = 'none';
+        return;
+      }
     }
 
     const statsParts = stats.filter(s => s.length > 0);
