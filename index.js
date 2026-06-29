@@ -37,10 +37,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
 
-    document.getElementById('ia-kit-items').addEventListener('input', e => {
-      e.target.value = e.target.value.toLowerCase();
-    });
-
     const hasFontSize = titleSize || hpSize || statSizesRaw.trim() || itemSizesRaw.trim();
     if (!hasFontSize) {
       errorbox.innerHTML = 'Please enter at least one font size.';
@@ -99,9 +95,9 @@ window.addEventListener('DOMContentLoaded', () => {
       <div class="ia-kit-stat-defense" style="${statSizes[3] ? `font-size:${statSizes[3]}` : ''}">${stats[3] || '0%'}</div>
     </div>
   </div>
-  <div class="ia-kit-item1-name" style="${itemSizes[0] ? `font-size:${itemSizes[0]}` : ''}">${items[0] || ''}</div>
-  <div class="ia-kit-item2-name" style="${itemSizes[1] ? `font-size:${itemSizes[1]}` : ''}">${items[1] || ''}</div>
-  <div class="ia-kit-item3-name" style="${itemSizes[2] ? `font-size:${itemSizes[2]}` : ''}">${items[2] || ''}</div>
+  <div class="ia-kit-item1-name" style="${itemSizes[0] ? `font-size:${itemSizes[0]}` : ''}">${(items[0] || '').toLowerCase()}</div>
+  <div class="ia-kit-item2-name" style="${itemSizes[1] ? `font-size:${itemSizes[1]}` : ''}">${(items[1] || '').toLowerCase()}</div>
+  <div class="ia-kit-item3-name" style="${itemSizes[2] ? `font-size:${itemSizes[2]}` : ''}">${(items[2] || '').toLowerCase()}</div>
 </div>`;
   }
 
