@@ -37,6 +37,18 @@ window.addEventListener('DOMContentLoaded', () => {
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
 
+    document.getElementById('ia-kit-items').addEventListener('input', e => {
+      e.target.value = e.target.value.toLowerCase();
+    });
+
+    const hasFontSize = titleSize || hpSize || statSizesRaw.trim() || itemSizesRaw.trim();
+    if (!hasFontSize) {
+      errorbox.innerHTML = 'Please enter at least one font size.';
+      preview.innerHTML = '';
+      preview.style.backgroundImage = 'none';
+      return;
+    }
+
     const statsParts = stats.filter(s => s.length > 0);
     if (statsParts.some(s => !/^-?\d+(\.\d+)?(x|%)?$/.test(s))) {
       errorbox.innerHTML = 'Enter 4 numeric values for statistics: Walkspeed, Attack, Jump power, Defense.';
