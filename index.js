@@ -37,9 +37,13 @@ window.addEventListener('DOMContentLoaded', () => {
     const statSizes = parseSizes(statSizesRaw, 4);
     const itemSizes = parseSizes(itemSizesRaw, 3);
 
-    const hasFontSize = titleSize || hpSize || statSizesRaw.trim() || itemSizesRaw.trim();
-    if (!hasFontSize) {
-      errorbox.innerHTML = 'Please enter at least one font size.';
+    document.getElementById('ia-kit-items').addEventListener('input', e => {
+      e.target.value = e.target.value.toLowerCase();
+    });
+
+   const itemSizes = parseSizes(itemSizesRaw, 3);
+    if (itemSizes.some(size => !size)) {
+      errorbox.innerHTML = 'Please enter all 3 item font sizes.';
       preview.innerHTML = '';
       preview.style.backgroundImage = 'none';
       return;
